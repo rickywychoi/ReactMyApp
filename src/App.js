@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
+import WithClasses from './hoc/WithClasses';
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import Posts from './Components/Posts/Posts';
@@ -64,7 +65,7 @@ class App extends Component {
     <Char value={ch} key={index} clicked={()=>this.charDeleteHandler(index)} />)
 
     return (
-      <div className="App">
+      <WithClasses classes={classes.App}>
         <NavBar />
         <Header />
         <div className="container pt-2 pb-4">
@@ -79,7 +80,7 @@ class App extends Component {
           <Posts />
         </div>
         <Footer />
-      </div>
+      </WithClasses>
     );
   }
 }

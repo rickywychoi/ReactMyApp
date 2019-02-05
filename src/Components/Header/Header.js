@@ -1,12 +1,13 @@
 import React from 'react';
-import './Header.css'
+import classes from './Header.css'
+import WithClasses from '../../hoc/WithClasses';
 
 const Header = () => {
   return (
-    <div className="header">
+    <WithClasses classes={classes.header}>
       <h1>This is a header.</h1>
       <p>This should be awesome.</p>
-    </div>
+    </WithClasses>
     );
 };
 
