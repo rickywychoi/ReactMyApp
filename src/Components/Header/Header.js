@@ -1,14 +1,15 @@
 import React from 'react';
 import classes from './Header.css'
-import WithClasses from '../../hoc/WithClasses';
+import withClasses from '../../hoc/WithClasses';
+import Aux from '../../hoc/Aux';
 
 const Header = () => {
   return (
-    <WithClasses classes={classes.header}>
+    <Aux>
       <h1>This is a header.</h1>
       <p>This should be awesome.</p>
-    </WithClasses>
+    </Aux>
     );
 };
 
-export default Header;
+export default withClasses(Header, classes.header);

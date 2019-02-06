@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import WithClasses from './hoc/WithClasses';
+import withClasses from './hoc/WithClasses';
+import Aux from './hoc/Aux';
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import Posts from './Components/Posts/Posts';
@@ -29,15 +30,21 @@ class App extends Component {
     })
   }
 
-  validationFalse = () => {
-    this.setState({
-      validation: false
+  validationTrue = (e) => {
+    e.preventDefault();
+    this.setState((prevState, props) => {
+      return {
+        validation: prevState.validation = true
+      }
     })
   }
 
-  validationTrue = () => {
-    this.setState({
-      validation: true
+  validationFalse = (e) => {
+    e.preventDefault();
+    this.setState((prevState, props) => {
+      return {
+        validation: prevState.validation = false
+      }
     })
   }
 
@@ -61,11 +68,15 @@ class App extends Component {
         </div>
       )
     }
-    const charList = this.state.char.split('').map((ch, index) => 
-    <Char value={ch} key={index} clicked={()=>this.charDeleteHandler(index)} />)
+
+    let charList = null;
+    // if(this.state.validation===true) {
+      charList = this.state.char.split('').map((ch, index) => 
+      <Char value={ch} key={index} clicked={()=>this.charDeleteHandler(index)} />)
+    // }
 
     return (
-      <WithClasses classes={classes.App}>
+      <Aux>
         <NavBar />
         <Header />
         <div className="container pt-2 pb-4">
@@ -80,9 +91,9 @@ class App extends Component {
           <Posts />
         </div>
         <Footer />
-      </WithClasses>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClasses(App, classes.App);

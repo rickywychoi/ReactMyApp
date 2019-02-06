@@ -1,15 +1,16 @@
 import React from 'react';
 import './Footer.css'
 import classes from './Footer.css';
-import WithClasses from '../../hoc/WithClasses';
+import withClasses from '../../hoc/WithClasses';
+import Aux from '../../hoc/Aux';
 
 const Footer = () => {
   return (
-    <WithClasses classes={classes.footer}>
+    <Aux>
       <h1>This is a footer.</h1>
       <p>This should be awesome.</p>
-    </WithClasses>
+    </Aux>
     );
 };
 
-export default Footer;
+export default withClasses(Footer, classes.footer);

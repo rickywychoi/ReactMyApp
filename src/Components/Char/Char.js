@@ -1,14 +1,15 @@
 import React from 'react';
 import classes from './Char.css'
-import WithClasses from '../../hoc/WithClasses'
+import withClasses from '../../hoc/WithClasses'
+import Aux from '../../hoc/Aux';
 
 const Char = (props) => {
   return (
-    <WithClasses classes={classes.CharMain}>
+    <Aux>
       <p onClick={props.clicked}>{props.value}</p>
-    </WithClasses>
+    </Aux>
       
   );
 }
 
-export default Char;
+export default withClasses(Char, classes.CharMain);
