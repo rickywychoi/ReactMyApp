@@ -6,7 +6,7 @@ const UserOutput = (props) => {
   return <p>Username: {props.username}</p>
 }
 
-UserOutput.PropTypes = {
+UserOutput.propTypes = {
   username: PropTypes.string
 };
 

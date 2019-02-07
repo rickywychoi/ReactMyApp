@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 const errorStyle = {
   color: 'red'
 }
 
-const Validate = (props) => {
-  let message = null;
-  if(props.value.length < 5){
-    message = <p style={errorStyle} onLoad={props.validatedFalse}>The input value is less than 5 letters.</p>
-  }else {
-    message = <p onLoad={props.validatedTrue}>Long enough!</p>
+class Validate extends Component {
+  render() {
+    let message = null;
+    if(this.props.value.length < 5){
+      // this.props.validatedFalse();
+      message = <p style={errorStyle}>The input value should be at least 5 letters.</p>
+    }else {
+      // this.props.validatedTrue();
+      message = (
+      <div>
+        <p>Long enough!</p>
+        <p>Input: {this.props.value}</p>
+        <button type="button" className="btn btn-outline-secondary" onClick={this.props.validatedTrue}>Show Characters</button>
+      </div>
+      )
+    }
+    return (
+      <div>
+        {message}
+      </div>
+    );
   }
-
-  return (
-    <div>
-      {message}
-    </div>
-  )
-}
+}  
 
 export default Validate;

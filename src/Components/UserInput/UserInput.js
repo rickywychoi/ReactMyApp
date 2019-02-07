@@ -5,7 +5,7 @@ const UserInput = (props) => {
     return <input value={props.value} onChange={props.onChange} />
 }
 
-UserInput.PropTypes = {
+UserInput.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired
 };

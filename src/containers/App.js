@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import withClasses from './hoc/WithClasses';
-import Aux from './hoc/Aux';
-import Header from './Components/Header/Header';
-import NavBar from './Components/NavBar/NavBar';
-import Posts from './Components/Posts/Posts';
-import Footer from './Components/Footer/Footer';
-import UserInput from './Components/UserInput/UserInput';
-import UserOutput from './Components/UserOutput/UserOutput';
-import Validate from './Components/Validate/Validate';
-import Char from './Components/Char/Char';
+import withClasses from '../hoc/WithClasses';
+import Aux from '../hoc/Aux';
+import Header from '../components/Header/Header';
+import NavBar from '../components/NavBar/NavBar';
+import Posts from '../components/Posts/Posts';
+import Footer from '../components/Footer/Footer';
+import UserInput from '../components/UserInput/UserInput';
+import UserOutput from '../components/UserOutput/UserOutput';
+import Validate from '../components/Validate/Validate';
+import Characters from '../components/Characters/Characters';
 
 class App extends Component {
   state = {
@@ -30,24 +30,14 @@ class App extends Component {
     })
   }
 
-  validationTrue = (e) => {
-    e.preventDefault();
-    this.setState((prevState, props) => {
+  validationTrue = () => {
+    this.setState((prevState) => {
       return {
         validation: prevState.validation = true
       }
     })
   }
-
-  validationFalse = (e) => {
-    e.preventDefault();
-    this.setState((prevState, props) => {
-      return {
-        validation: prevState.validation = false
-      }
-    })
-  }
-
+  
   charDeleteHandler = (index) => {
     const text = this.state.char.split('');
     text.splice(index, 1);
@@ -63,17 +53,10 @@ class App extends Component {
           <Validate 
           value={this.state.char}
           validatedTrue={this.validationTrue}
-          validatedFalse={this.validationFalse}
           />
         </div>
       )
     }
-
-    let charList = null;
-    // if(this.state.validation===true) {
-      charList = this.state.char.split('').map((ch, index) => 
-      <Char value={ch} key={index} clicked={()=>this.charDeleteHandler(index)} />)
-    // }
 
     return (
       <Aux>
@@ -84,8 +67,11 @@ class App extends Component {
           <UserOutput username={this.state.username} />
           <input value={this.state.char} onChange={this.charHandler} />
           {Validation}
-          <p>{this.state.char}</p>
-          {charList}
+          <Characters 
+          validation={this.state.validation} 
+          char={this.state.char} 
+          charDeleteHandler={this.charDeleteHandler}
+          />
           <Posts />
           <Posts />
           <Posts />
