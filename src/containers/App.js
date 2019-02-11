@@ -10,6 +10,7 @@ import UserInput from '../components/UserInput/UserInput';
 import UserOutput from '../components/UserOutput/UserOutput';
 import Validate from '../components/Validate/Validate';
 import Characters from '../components/Characters/Characters';
+import Example from '../components/Example/Example';
 
 class App extends Component {
   state = {
@@ -63,15 +64,20 @@ class App extends Component {
         <NavBar />
         <Header />
         <div className="container pt-2 pb-4">
-          <UserInput value={this.state.username} onChange={this.usernameHandler} />
-          <UserOutput username={this.state.username} />
-          <input value={this.state.char} onChange={this.charHandler} />
-          {Validation}
-          <Characters 
-          validation={this.state.validation} 
-          char={this.state.char} 
-          charDeleteHandler={this.charDeleteHandler}
-          />
+          <Example />
+          <Aux className={classes.user}>
+            <UserInput value={this.state.username} onChange={this.usernameHandler} />
+            <UserOutput username={this.state.username} />
+          </Aux>
+          <Aux className={classes.char}>
+            <input value={this.state.char} onChange={this.charHandler} />
+            {Validation}
+              <Characters 
+              validation={this.state.validation} 
+              char={this.state.char} 
+              charDeleteHandler={this.charDeleteHandler}
+              />
+          </Aux>
           <Posts />
           <Posts />
           <Posts />
